@@ -1,0 +1,14 @@
+recipes/RecipesApplication.java
+ recipes.RecipesApplication
+recipes/repository/RecipeRepo.java
+ recipes.repository.RecipeRepo
+recipes/model/Recipe.java
+ recipes.model.Recipe
+recipes/service/RecipeService.java
+ recipes.service.RecipeService
+recipes/controller/RecipeRestController.java
+ recipes.controller.RecipeRestController
+recipes/model/Ingredients.java
+ recipes.model.Ingredients
+recipes/model/Directions.java
+ recipes.model.Directions
