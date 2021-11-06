@@ -1,21 +1,23 @@
 package recipes.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Proxy;
+import org.w3c.dom.NameList;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.util.*;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "Recipes")
+@Table(name = "recipes")
 public class Recipe {
 
     @Id
@@ -28,22 +30,26 @@ public class Recipe {
     private String name;
 
     @Column(name = "description")
+    @NotBlank
     private String description;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Directions> directions = new HashSet<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Size(min = 1, message = "Must be at least one ingredient")
+    private List<String> ingredients = new ArrayList<>();
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Ingredients> ingredients = new HashSet<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Size(min = 1, message = "Must be at least one direction")
+    @NotEmpty
+    private List<String> directions = new ArrayList<>();
 
     @Override
     public String toString() {
-        return "Recipe{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", directions=" + directions +
-                ", ingredients=" + ingredients +
+        return "Recipe{" + '\n' +
+                "id=" + id + '\n' +
+                ", name='" + name + '\'' + '\n' +
+                ", description='" + description + '\'' + '\n' +
+                ", ingredients=" + ingredients + '\n' +
+                ", directions=" + directions + '\n' +
                 '}';
     }
 }

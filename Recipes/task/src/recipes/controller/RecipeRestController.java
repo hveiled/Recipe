@@ -27,13 +27,13 @@ public class RecipeRestController {
     public Recipe retrieve(@PathVariable Long id) {
         Recipe recipe = recipeBook.getRecipe(id);
         if (recipe == null) {
-            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found");
         }
         return recipe;
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         if (!recipeBook.deleteRecipe(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No content");
