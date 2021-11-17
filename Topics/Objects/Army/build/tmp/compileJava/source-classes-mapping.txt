@@ -1,6 +1,0 @@
-Main.java
- Army
- Army$Doctor
- Army$General
- Army$Knight
- Army$Unit

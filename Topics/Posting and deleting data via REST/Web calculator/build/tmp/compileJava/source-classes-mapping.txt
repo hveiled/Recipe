@@ -1,4 +1,0 @@
-calculator/WebCalculatorApplication.java
- calculator.WebCalculatorApplication
-calculator/ArithmeticRestController.java
- calculator.ArithmeticRestController
